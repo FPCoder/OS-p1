@@ -19,6 +19,7 @@ public class Process {
         burstTime = bt;
         priority = p;
     }
+    public int getPID() { return pid; }
     public int getBT() { return burstTime; }
     public int getPriority() { return priority; }
     
@@ -39,5 +40,22 @@ public class Process {
             burstTime -= n;
             return true;
         }
+    }
+    
+    public String toString() {
+    	return pid + "," + burstTime + "," + priority;
+    }
+    protected Process clone() {
+    	return new Process(pid, burstTime, priority);
+    }
+    
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        Process p = new Process(1, 50, 10);
+        System.out.println("bt: " + p.getBT());
+        p.reduceBT(55);
+        System.out.println("reduced: " + p.getBT());
     }
 }
