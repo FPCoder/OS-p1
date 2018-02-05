@@ -26,7 +26,6 @@ public class TestContent {
             Process p;
             while (sc.hasNextInt()) {
                 p = new Process(sc.nextInt(), sc.nextInt(), sc.nextInt());
-                System.out.println(p.toString());
                 processes.add(p);
             }
             sc.close();

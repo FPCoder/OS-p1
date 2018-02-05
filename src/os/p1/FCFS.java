@@ -18,11 +18,11 @@ import java.util.ArrayList;
  * @author Evan
  */
 public class FCFS implements Scheduler {
-    private ArrayList<Process> q;
-    private ArrayList<Row> rows;
-    private int cpu = 0;
-    private String fileName;
-    private String outputFileName;
+    protected ArrayList<Process> q;
+    protected ArrayList<Row> rows;
+    protected int cpu = 0;
+    protected String fileName;
+    protected String outputFileName;
     
     FCFS(String str) {
     	String fn = str;
@@ -78,12 +78,15 @@ public class FCFS implements Scheduler {
 	public void outputToFile(String str) throws FileNotFoundException {		
 		PrintWriter pw = new PrintWriter(new File(outputFileName));
 		StringBuilder sb = new StringBuilder();
+		String output;
 		
 		sb.append(colLabels);
 		for (int i = 0; i < rows.size(); ++i) {
 			sb.append(rows.get(i));
 		}
-		pw.write(sb.toString());
+		output = sb.toString();
+		System.out.println(output);
+		pw.write(output);
 		pw.close();
 	}
 
