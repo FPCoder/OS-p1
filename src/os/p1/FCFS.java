@@ -5,10 +5,13 @@
  */
 package os.p1;
 
-import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
+import static java.nio.file.StandardOpenOption.*;
 
 /**
  *  First Come First Serve
@@ -75,19 +78,27 @@ public class FCFS implements Scheduler {
 		}
 	}
 	@Override
-	public void outputToFile(String str) throws FileNotFoundException {		
-		PrintWriter pw = new PrintWriter(new File(outputFileName));
-		StringBuilder sb = new StringBuilder();
-		String output;
-		
-		sb.append(colLabels);
-		for (int i = 0; i < rows.size(); ++i) {
-			sb.append(rows.get(i));
+	public void outputToFile(String str) throws FileNotFoundException {
+		try {
+			PrintWriter pw;
+			
+			/* opens the file to write to, creating a new one if it doesn't exist, 
+			 * and overwriting the old if it does */
+			pw = new PrintWriter(Files.newOutputStream(Paths.get(outputFileName), CREATE, TRUNCATE_EXISTING));
+			StringBuilder sb = new StringBuilder();
+			String output;
+			
+			sb.append(colLabels);
+			for (int i = 0; i < rows.size(); ++i) {
+				sb.append(rows.get(i));
+			}
+			output = sb.toString();
+			System.out.println(output);
+			pw.write(output);
+			pw.close();
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
-		output = sb.toString();
-		System.out.println(output);
-		pw.write(output);
-		pw.close();
 	}
 
 	@Override
