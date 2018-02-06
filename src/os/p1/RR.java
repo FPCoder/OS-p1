@@ -3,7 +3,7 @@ package os.p1;
 import java.io.FileNotFoundException;
 
 public class RR extends FCFS {
-	private int tq = 25;
+	protected int tq = 25;
 
 	RR(String str) {
 		super(str);
