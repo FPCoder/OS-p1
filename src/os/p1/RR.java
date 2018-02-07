@@ -72,7 +72,7 @@ public class RR extends FCFS {
 			p = nextProcess();
 			rows.add(calcRow(p));
 			if (p.burstTime <= 0) {
-				q.remove(0); // if process done, remove it
+				q.remove(p); // if process done, remove it
 			}
 			else {
 				q.add(q.remove(0)); // otherwise, move it to the back
@@ -81,13 +81,12 @@ public class RR extends FCFS {
 		try {
 			outputToFile(outputFileName);
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
 	public static void main(String[] args) {
-		RR r = new RR("testdata1.txt", 50);
+		RR r = new RR("testdata1.txt", 25);
 		r.run();
 	}
 

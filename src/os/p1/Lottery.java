@@ -1,8 +1,11 @@
 package os.p1;
 
+import java.util.Random;
+
 public class Lottery extends RR {
 	private int totalPriority = 0;
 	private int tickets = 0;
+	private Random r = new Random();
 
 	public Lottery(String str) {
 		super(str);
@@ -16,16 +19,19 @@ public class Lottery extends RR {
 	@Override
 	public Process nextProcess() {
 		if (!q.isEmpty()) {
-			Process p;
+			Process p = null;
+			int i = 0;
 			totalPriority = 0; // reset the total priority
 			tickets = 0; // reset number of tickets left
-			for (int i = 0; i < q.size(); ++i) { // determine total priority
-				totalPriority += q.get(i).priority;
+			for (i = 0; i < q.size(); ++i) { // determine total priority
+				totalPriority += q.get(i).getPriority();
 			}
-			do { // until priority is reached, select the next node
-				p = q.remove(q.size()-1); // cycle last to front
-				q.add(0, p);
-			} while (tickets < totalPriority);
+			int num = r.nextInt(totalPriority - 1); // range of 0-(totalPriority-1)
+			num += 1; // range is now 1-totalPriority
+			for (i = 0; tickets < num; ++i) {
+				p = q.get(i);
+				tickets += p.getPriority();
+			}
 			return p;
 		}
 		else {

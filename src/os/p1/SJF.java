@@ -1,8 +1,5 @@
 package os.p1;
 
-import java.io.FileNotFoundException;
-import java.util.ArrayList;
-
 /**
  * Shortest Job First Scheduler
  * Sorts the processes entered to handle the shortest jobs first.
