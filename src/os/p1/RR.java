@@ -7,10 +7,6 @@ public class RR extends FCFS {
 
 	RR(String str) {
 		super(str);
-    	String fn = str;
-    	fileName = str;
-		if (fn.indexOf(".") > 0)
-			fn = fn.substring(0, fn.lastIndexOf("."));
 		outputFileName = "RR25-" + fn + ".csv";	// RR25 is the default
 	}
 	
@@ -22,11 +18,7 @@ public class RR extends FCFS {
 	RR(String str, int t) {
 		super(str);
 		tq = t; // update time_quantum to parameter
-    	String fn = str;
-    	fileName = str;
-		if (fn.indexOf(".") > 0)
-			fn = fn.substring(0, fn.lastIndexOf("."));
-		outputFileName = "RR" + t + '-' + fn + ".csv"; // appends time quantum to RR
+		outputFileName = "RR" + tq + '-' + fn + ".csv"; // appends time quantum to RR
 	}
 	
 	@Override

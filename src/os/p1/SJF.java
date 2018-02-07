@@ -1,5 +1,7 @@
 package os.p1;
 
+import java.util.Comparator;
+
 /**
  * Shortest Job First Scheduler
  * Sorts the processes entered to handle the shortest jobs first.
@@ -10,17 +12,18 @@ public class SJF extends FCFS {
 	
 	SJF(String str) {
 		super(str);
-    	String fn = str;
-    	fileName = str;
-		if (fn.indexOf(".") > 0)
-			fn = fn.substring(0, fn.lastIndexOf("."));
 		outputFileName = "SJF-" + fn + ".csv";
 	}
 
 	@Override
 	public void fillQueue(TestContent tc) {
 		q = tc.cloneProcess();
-		q.sort(new ProcessComparator());
+		q.sort(new Comparator<Process>() {
+			@Override
+			public int compare(Process arg0, Process arg1) {
+				return arg0.burstTime - arg1.burstTime;
+			}
+		});
 	}
 
 	public static void main(String[] args) {

@@ -10,10 +10,6 @@ public class Lottery extends RR {
 	public Lottery(String str) {
 		super(str);
 		tq = 50; // set time quantum to 50
-    	String fn = str;
-    	fileName = str;
-		if (fn.indexOf(".") > 0)
-			fn = fn.substring(0, fn.lastIndexOf("."));
 		outputFileName = "Lottery-" + fn + ".csv"; // appends time quantum to RR
 	}
 	@Override
@@ -26,7 +22,8 @@ public class Lottery extends RR {
 			for (i = 0; i < q.size(); ++i) { // determine total priority
 				totalPriority += q.get(i).getPriority();
 			}
-			int num = r.nextInt(totalPriority - 1); // range of 0-(totalPriority-1)
+			System.out.println(totalPriority);
+			int num = r.nextInt((totalPriority < 2) ? 1 : totalPriority - 1); // range of 0-(totalPriority-1)
 			num += 1; // range is now 1-totalPriority
 			for (i = 0; tickets < num; ++i) {
 				p = q.get(i);
@@ -40,7 +37,7 @@ public class Lottery extends RR {
 	}
 
 	public static void main(String[] args) {
-		new Lottery("testdata1.txt").run();
+		new Lottery("testdata2.txt").run();
 	}
 
 }

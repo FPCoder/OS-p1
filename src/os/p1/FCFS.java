@@ -21,20 +21,19 @@ import static java.nio.file.StandardOpenOption.*;
  * @author Evan
  */
 public class FCFS implements Scheduler {
-    protected ArrayList<Process> q;
-    protected ArrayList<Row> rows;
+    protected ArrayList<Process> q = new ArrayList<>();
+    protected ArrayList<Row> rows = new ArrayList<>();
     protected int cpu = 0;
     protected String fileName;
+    protected String fn; // given filename without extension
     protected String outputFileName;
     
     FCFS(String str) {
-    	String fn = str;
+    	fn = str;
     	fileName = str;
 		if (fn.indexOf(".") > 0)
 			fn = fn.substring(0, fn.lastIndexOf("."));
 		outputFileName = "FCFS-" + fn + ".csv";
-    	q = new ArrayList<>();
-    	rows = new ArrayList<>();
     }
     
 	@Override
