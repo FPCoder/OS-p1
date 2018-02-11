@@ -29,6 +29,7 @@ public class SJF extends FCFS {
 	public static void main(String[] args) {
 		SJF sch = new SJF("testdata1.txt");
 		sch.run();
+        System.out.println("Average CT: " + sch.getAvgCT());
 	}
 
 }

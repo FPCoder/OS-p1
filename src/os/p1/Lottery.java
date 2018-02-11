@@ -22,7 +22,6 @@ public class Lottery extends RR {
 			for (i = 0; i < q.size(); ++i) { // determine total priority
 				totalPriority += q.get(i).getPriority();
 			}
-			System.out.println(totalPriority);
 			int num = r.nextInt((totalPriority < 2) ? 1 : totalPriority - 1); // range of 0-(totalPriority-1)
 			num += 1; // range is now 1-totalPriority
 			for (i = 0; tickets < num; ++i) {

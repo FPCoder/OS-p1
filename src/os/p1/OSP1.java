@@ -29,6 +29,9 @@ public class OSP1 {
         }
         for (int i = 0; i < s.size(); ++i) {
         	s.get(i).run();
+            System.out.println(((FCFS) s.get(i)).getName() + 
+            		" average CT: " + 
+            		((FCFS) s.get(i)).getAvgCT());
         }
     }
     

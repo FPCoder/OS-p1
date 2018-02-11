@@ -36,6 +36,22 @@ public class FCFS implements Scheduler {
 		outputFileName = "FCFS-" + fn + ".csv";
     }
     
+    public double getAvgCT() {
+    	int ret = 0;
+    	int j = 0;
+    	int n = 0;
+    	for (int i = 0; i < rows.size(); ++i) {
+    		j = rows.get(i).getct();
+    		if (j > 0) {
+    			++n;
+    			ret += j;
+    		}
+    	}
+    	return (double)ret / n;
+    }
+    
+    public String getName() { return outputFileName; }
+    
 	@Override
 	public void fillQueue(TestContent tc) {
         q = tc.cloneProcess();
@@ -92,7 +108,6 @@ public class FCFS implements Scheduler {
 				sb.append(rows.get(i));
 			}
 			output = sb.toString();
-			System.out.println(output);
 			pw.write(output);
 			pw.close();
 		} catch (IOException e) {
@@ -126,5 +141,6 @@ public class FCFS implements Scheduler {
     public static void main(String[] args) {
         FCFS sch = new FCFS("testdata1.txt");
         sch.run();
+        System.out.println("Average CT: " + sch.getAvgCT());
     }
 }

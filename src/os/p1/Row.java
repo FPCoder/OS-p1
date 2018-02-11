@@ -32,6 +32,7 @@ public class Row {
     public void sbt(int i) { startBT = i; }
     public void ebt(int i) { endBT = i; }
     public void ct(int i) { completionTime = i; }
+    public int getct() { return completionTime; }
     
     @Override
     public String toString() {
